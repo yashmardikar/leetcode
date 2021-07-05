@@ -1,8 +1,8 @@
 ###Question: https://leetcode.com/problems/two-sum/
 ###Solution:
-#O(n),O(n)
+#O(n2),O(1)
 
-#Two Pass Solution
+#Brute Force
 class Solution(object):
     def twoSum(self, nums, target):
         """
@@ -10,18 +10,7 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        
-        h1=dict()
-        #To find first pair we traverse in reverse array so that if a duplicate element exists
-        #initial elements index remains in dictionary 
-        for i in range(len(nums)-1,-1,-1):
-            h1[nums[i]] = i
-        
-        
         for i in range(len(nums)):
-            check_complement = h1.get(target - nums[i])
-            if check_complement is not None:
-                if check_complement == i :
-                    pass
-                else:
-                    return [i,check_complement]
+            for j in range(i+1,len(nums)):
+                if nums[i]+nums[j]==target:
+                    return [i,j]
