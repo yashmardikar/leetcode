@@ -13,3 +13,10 @@ class Solution:
         for i in range(1, len(nums)):
             xor = xor^nums[i]
         return xor
+    
+    def singleNumber2(self, nums: List[int]) -> int:
+        if len(nums)==1: return nums[0]
+        xor = 0
+        for i in nums:
+            xor = xor^i
+        return xor
