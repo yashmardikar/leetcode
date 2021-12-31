@@ -1,16 +1,14 @@
 class Solution:
     def singleNumber1(self, nums: List[int]) -> int:
-        #add to s1 when only 1 occurence is found yet
+        #time complexity: O(n)
+        #space complexity: O(n/3)
+        
+        # add when num count is exactly 1
         s1 = set()
-        #add to s2 when 2 occurences found yet
+        # add when num count is exactly 2
         s2 = set()
         
         for n in nums:
-            #means num was found once before
-            c1 = n in s1 
-            #means num was found twice before
-            c2 = n in s2
-            
             #num was never found before
             if (n not in s1) and (n not in s2):
                 #number is occuring for first time
@@ -20,11 +18,15 @@ class Solution:
                 s2.add(n)
                 s1.remove(n)
             elif c2:
+                # number occured 3rd time
                 s2.remove(n)
         
         return s1.pop()
     
     def singleNumber(self, nums: List[int]) -> int:
+        #time complexity: O(2n)
+        #space complexity: O(n/3)
+        
         unique_num_sum = sum(set(nums))
         
         # repeating numbers are added 3 times except unique num
@@ -35,3 +37,5 @@ class Solution:
         
         #returning int, not float
         return int(unique_num/2)
+    
+    
