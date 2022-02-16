@@ -1,20 +1,15 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        start = 0
-        end = 0
-        sliding_diff = 0
-        while start<len(prices) and end<len(prices):
-            if start==end:
-                end += 1
-                continue
-            if prices[start] > prices[end]:
-                #diff in negative, inc i
-                start += 1
-                continue
-            diff = prices[end] - prices[start]
-            sliding_diff = max(diff, sliding_diff)
-            end += 1
-        return sliding_diff
-
-            
+        start, end = 0, 1
+        maxProfit = 0
         
+        while end < len(prices):
+            if prices[start] < prices[end]:
+                #profitable transaction
+                currProfit = prices[end] - prices[start]
+                maxProfit = max(maxProfit, currProfit)
+            else:
+                #start changes only when next min is found
+                start = end
+            end += 1
+        return maxProfit
