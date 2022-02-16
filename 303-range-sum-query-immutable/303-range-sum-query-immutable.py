@@ -2,15 +2,15 @@ class NumArray:
 
     def __init__(self, nums: List[int]):
         self.nums = nums
+        #pre process nums to build prefix sum array 
         self.prefix_sum_array = []
         running_sum = 0
         for num in nums:
             running_sum += num
             self.prefix_sum_array.append(running_sum)
-        print(self.prefix_sum_array)
 
     def sumRange(self, left: int, right: int) -> int:
-        print(self.prefix_sum_array[right], self.prefix_sum_array[left])
+        #rightmost running sum of all values - sum of values before left index 
         return self.prefix_sum_array[right] - self.prefix_sum_array[left] + self.nums[left]
 
 
