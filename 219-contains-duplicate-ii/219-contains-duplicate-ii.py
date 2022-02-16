@@ -4,10 +4,9 @@ class Solution:
         for i, num in enumerate(nums):
             if num not in hmap:
                 hmap[num] = i
-            else:
-                if abs(i-hmap[num]) <= k:
+            elif abs(i-hmap[num]) <= k:
                     return True
-                else:
-                    #replace value, append not needed. Discard initial reapeat index.
-                    hmap[num] = i
+            else:
+                #replace value, append not needed. Discard initial reapeat index.
+                hmap[num] = i
         return False
