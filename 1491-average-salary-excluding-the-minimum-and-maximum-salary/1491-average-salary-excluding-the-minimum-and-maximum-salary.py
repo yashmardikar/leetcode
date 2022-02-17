@@ -5,11 +5,8 @@ class Solution:
         running_sum = 0
         
         for sal in salary:
-            print(min_sal, max_sal, running_sum)
-            if sal < min_sal:
-                min_sal = sal
-            if sal > max_sal:
-                max_sal = sal
+            min_sal = min(min_sal, sal)
+            max_sal = max(max_sal, sal)
             running_sum += sal
         return (running_sum-(min_sal+max_sal))/(len(salary)-2)
             
