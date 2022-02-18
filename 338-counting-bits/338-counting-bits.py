@@ -1,4 +1,9 @@
 class Solution:
     def countBits(self, n: int) -> List[int]:
-        return [ bin(i)[2:].count("1") for i in range(n+1) ]
+        #DP
+        res = [0]
+        for i in range(1, n + 1):
+            #res.append(i%2 + res[i//2])
+            res.append((i&1) + res[i >> 1])
+        return res
         
