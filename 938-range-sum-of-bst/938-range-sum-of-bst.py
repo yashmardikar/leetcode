@@ -11,8 +11,8 @@ class Solution:
             nonlocal res
             if not node:
                 return
-            postorder(node.left) if node.val >= low else None
-            postorder(node.right) if node.val <= high else None
+            postorder(node.left) 
+            postorder(node.right) 
             if low <= node.val <= high:
                 res += node.val
             
