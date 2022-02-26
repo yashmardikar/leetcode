@@ -6,19 +6,15 @@
 #         self.right = right
 class Solution:
     def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
-        from collections import deque
-        q = deque([root]) 
         res = 0
-        while q:
-            qlen = len(q)
-            for i in range(qlen):
-                node = q.popleft()
-                if node.val >= low and node.val <= high:
-                    res += node.val
-                if node.left is not None:
-                    q.append(node.left)
-                if node.right is not None:
-                    q.append(node.right)
+        def postorder(node):
+            nonlocal res
+            if not node:
+                return
+            postorder(node.left) if node.val >= low else None
+            postorder(node.right) if node.val <= high else None
+            if low <= node.val <= high:
+                res += node.val
+            
+        postorder(root)
         return res
-                
-                
