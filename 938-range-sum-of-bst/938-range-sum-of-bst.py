@@ -16,8 +16,11 @@ class Solution:
                 if node.val >= low and node.val <= high:
                     res += node.val
                 if node.left is not None and node.val >=low:
+                    #dont visit left in node val is less than low, 
+                    #so all left vals be lower than low
                     q.append(node.left)
                 if node.right is not None and node.val <= high:
+                    #dont check right as this subtree will contain vals gt high
                     q.append(node.right)
         return res
                 
