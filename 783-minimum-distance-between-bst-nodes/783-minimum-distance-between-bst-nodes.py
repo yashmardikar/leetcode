@@ -6,17 +6,17 @@
 #         self.right = right
 class Solution:
     def minDiffInBST(self, root: Optional[TreeNode]) -> int:
-        self.lst = []
+        self.prev = None
+        self.mindiff = float("inf")
         self.recur(root)
-        mindiff = float("inf")
-        for i in range(1, len(self.lst)):
-            mindiff = min(self.lst[i] - self.lst[i-1], mindiff)
-        return mindiff    
+        return self.mindiff
     
     def recur(self, root):
         if root:
             self.recur(root.left) if root.left else None
-            self.lst.append(root.val)
+            if self.prev is not None:
+                self.mindiff = min(self.mindiff, root.val - self.prev )
+            self.prev = root.val
             self.recur(root.right) if root.right else None
         
             
