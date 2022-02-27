@@ -6,19 +6,19 @@
 #         self.right = right
 class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
-        if root:
-            self.min_level = float("inf")
-            self.recur(root, level = 0)
-            return self.min_level
-        else:
+        if root is None:
             return 0
-    
-    def recur(self, root, level):
-        level += 1
-        if level < self.min_level:
-            #keep exploring only if existing level < min_level
-            self.recur(root.left, level) if root.left else None
-            self.recur(root.right, level) if root.right else None
-            if root.left is None and root.right is None and level < self.min_level:
-                self.min_level = level
+        q = deque([root])
+        depth = 0
+        while q:
+            depth+=1
+            qlen = len(q)
+            for _ in range(qlen):
+                node = q.popleft()
+                if node.left is None and node.right is None:
+                    return depth
+                q.append(node.left) if node.left else None
+                q.append(node.right) if node.right else None
+        
+                
         
