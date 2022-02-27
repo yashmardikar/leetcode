@@ -15,11 +15,11 @@ class Solution:
     
     def recur(self, root, level):
         level += 1
-        
-        self.recur(root.left, level) if root.left else None
-        self.recur(root.right, level) if root.right else None
-        if root.left is None and root.right is None and level < self.min_level:
-            self.min_level = min(self.min_level, level)
-            self.min_level = level
-        
+        if level < self.min_level:
+            #keep exploring only if existing level < min_level
+            self.recur(root.left, level) if root.left else None
+            self.recur(root.right, level) if root.right else None
+            if root.left is None and root.right is None and level < self.min_level:
+                self.min_level = min(self.min_level, level)
+                self.min_level = level
         
