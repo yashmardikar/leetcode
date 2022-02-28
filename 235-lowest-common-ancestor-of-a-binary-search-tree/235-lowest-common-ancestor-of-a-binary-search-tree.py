@@ -12,4 +12,3 @@ class Solution:
         if p.val > root.val < q.val:
             return self.lowestCommonAncestor(root.right, p, q)
         return root
-        
