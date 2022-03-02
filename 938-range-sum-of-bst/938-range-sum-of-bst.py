@@ -6,22 +6,20 @@
 #         self.right = right
 class Solution:
     def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
-        from collections import deque
-        q = deque([root]) 
-        res = 0
-        while q:
-            qlen = len(q)
-            for i in range(qlen):
-                node = q.popleft()
-                if node.val >= low and node.val <= high:
-                    res += node.val
-                if node.left is not None and node.val >=low:
-                    #dont visit left in node val is less than low, 
-                    #so all left vals be lower than low
-                    q.append(node.left)
-                if node.right is not None and node.val <= high:
-                    #dont check right as this subtree will contain vals gt high
-                    q.append(node.right)
-        return res
-                
-                
+        self.sum = 0
+        return self.recur(root, low, high)
+    
+    def recur(self, root, low, high):
+        if root is None:
+            return 0
+        if low<= root.val <= high:
+            leftVal = self.recur(root.left, low, high) if root.left else 0
+            rightVal = self.recur(root.right, low, high) if root.right else 0
+            return root.val + leftVal + rightVal
+        
+        if root.val > high:
+            leftVal = self.recur(root.left, low, high) if root.left else 0
+            return leftVal
+        if root.val < low:
+            rightVal = self.recur(root.right, low, high) if root.right else 0
+            return rightVal
