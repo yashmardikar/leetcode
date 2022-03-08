@@ -10,7 +10,6 @@ class Solution:
                 #update last range
                 if startp <= start <= endp:
                     #check if new idx lies in prev range
-                    print(start, end)
                     res[-1][1] = max(end, endp)
                 else:
                     #start new range
