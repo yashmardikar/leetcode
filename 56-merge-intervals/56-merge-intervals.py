@@ -3,17 +3,11 @@ class Solution:
         intervals.sort()
         res = []
         for start, end in intervals:
-            if not res:
+            if not res or start > res[-1][1]:
+                #if first loop or curr start > last end(no overlap)
                 res.append([start, end])
             else:
-                startp, endp = res[-1]    #previous start, previous end
-                #update last range
-                if startp <= start <= endp:
-                    #check if new idx lies in prev range
-                    res[-1][1] = max(end, endp)
-                else:
-                    #start new range
-                    res.append([start,end])
-        return res
-                        
+                #overlap, update end. (start is alredy >= prev start so no need to update) 
+                res[-1][1] = max(end, res[-1][1])
+        return res        
         
