@@ -1,9 +1,10 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        pass
         hmap = {}
+        
         for i, val in enumerate(nums):
             if target - val in hmap:
                 return (hmap[target - val], i)
             hmap[val] = i
+        
         return None
